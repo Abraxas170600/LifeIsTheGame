@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TechnicalTest.GameCore.Data
+namespace TechnicalTest.Core.Data
 {
     [CreateAssetMenu(fileName = "GameCoreData", menuName = "Technical Test/Game Core/Game Core Data")]
     public class GameCoreSO : ScriptableObject
