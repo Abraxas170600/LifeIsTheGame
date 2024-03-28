@@ -11,6 +11,7 @@ namespace TechnicalTest.System.AnimationSystem.Controller
         private void Start()
         {
             Initialize();
+            LoadAnimation();
         }
         private void Initialize()
         {
@@ -31,7 +32,7 @@ namespace TechnicalTest.System.AnimationSystem.Controller
         }
         public void SaveAnimation()
         {
-            if (currentAnimation == null || currentAnimation == "")
+            if (string.IsNullOrEmpty(currentAnimation))
             {
                 Debug.LogError("No animation has been selected");
                 return;
@@ -42,7 +43,11 @@ namespace TechnicalTest.System.AnimationSystem.Controller
         public void LoadAnimation()
         {
             string animationName = SaveAndLoadUtility.LoadValue("SelectedAnimation");
-            EnableAnimation(animationName);
+
+            if (string.IsNullOrEmpty(animationName))
+                return;
+            else
+                EnableAnimation(animationName);
         }
     }
 }
