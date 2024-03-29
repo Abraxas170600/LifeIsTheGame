@@ -15,3 +15,5 @@ MonoBehaviour:
   gameCoreData:
   - systemSOName: AnimationSO
     systemSO: {fileID: 11400000, guid: 5d56fdd4942af6b428900af298306baa, type: 2}
+  - systemSOName: WeaponSO
+    systemSO: {fileID: 11400000, guid: dcd7268eb911257499cf51264522daaa, type: 2}

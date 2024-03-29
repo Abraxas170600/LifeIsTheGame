@@ -46,4 +46,7 @@ MonoBehaviour:
   managerType:
   - managerName: Animation Manager
     managerSO: {fileID: 11400000, guid: 23430aa6767e6474c802b7340fde740d, type: 2}
-    activeSystem: 1
+    activeSystem: 0
+  - managerName: Weapon Manager
+    managerSO: {fileID: 11400000, guid: 9fd88d60f0261ea46992f004f4ee53a0, type: 2}
+    activeSystem: 0
