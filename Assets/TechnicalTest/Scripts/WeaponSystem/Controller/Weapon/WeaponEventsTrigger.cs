@@ -1,27 +1,30 @@
-using TechnicalTest.System.WeaponSystem.Controller;
+using TechnicalTest.System.WeaponSystem.WeaponCore;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class WeaponEventsTrigger : MonoBehaviour
+namespace TechnicalTest.System.WeaponSystem.Controller
 {
-    [SerializeField] private UnityEvent<WeaponDrop> triggerEnterEvent;
-    [SerializeField] private UnityEvent triggerExitEvent;
+    public class WeaponEventsTrigger : MonoBehaviour
+    {
+        [SerializeField] private UnityEvent<Weapon> triggerEnterEvent;
+        [SerializeField] private UnityEvent triggerExitEvent;
 
-    private WeaponDrop currentWeapon;
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Weapon"))
+        private Weapon currentWeapon;
+        private void OnTriggerEnter(Collider other)
         {
-            currentWeapon = other.gameObject.GetComponentInParent<WeaponDrop>();
-            triggerEnterEvent.Invoke(currentWeapon);
+            if (other.gameObject.CompareTag("Weapon"))
+            {
+                currentWeapon = other.gameObject.GetComponentInParent<Weapon>();
+                triggerEnterEvent.Invoke(currentWeapon);
+            }
         }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Weapon"))
+        private void OnTriggerExit(Collider other)
         {
-            triggerExitEvent.Invoke();
-            currentWeapon = null;
+            if (other.gameObject.CompareTag("Weapon"))
+            {
+                triggerExitEvent.Invoke();
+                currentWeapon = null;
+            }
         }
     }
 }

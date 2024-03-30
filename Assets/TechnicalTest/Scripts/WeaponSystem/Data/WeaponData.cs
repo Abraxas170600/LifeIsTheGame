@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.Data
 {
@@ -9,6 +8,5 @@ namespace TechnicalTest.System.WeaponSystem.Data
         public WeaponType weaponName;
         public uint weaponDamage;
         public float weaponAttackSpeed;
-        public Weapon weaponObject;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TechnicalTest.System.InputSystem;
 using TechnicalTest.System.WeaponSystem.Data;
+using TechnicalTest.System.WeaponSystem.WeaponCore;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,19 +13,17 @@ namespace TechnicalTest.System.WeaponSystem.Controller
         [SerializeField] private GameObject weaponDropContainer;
         [SerializeField] private UnityEvent interactEvents;
 
-        private InputController input;
+        private readonly Dictionary<string, Weapon> weapons = new Dictionary<string, Weapon>();
 
-        private readonly List<Weapon> obtainedWeapons = new List<Weapon>();
-        private readonly Dictionary<string, WeaponDrop> weaponDrops = new Dictionary<string, WeaponDrop>();
-
-        private WeaponDrop currentWeaponDrop;
-        //private WeaponDrop oldWeaponDrop;
-
-        private Weapon currentWeapon;
+        private Weapon currentDroppedWeapon;
+        private GameObject currentWeapon;
 
         private uint weaponDamage;
         private float weaponAttackSpeed;
 
+        private InputController input;
+
+        #region Initialize
         public void Initialize(WeaponSO weaponSO)
         {
             input = GetComponent<InputController>();
@@ -33,25 +32,29 @@ namespace TechnicalTest.System.WeaponSystem.Controller
         }
         private void ConfiguratedWeapons(WeaponSO weaponSO)
         {
-            foreach (WeaponDrop weaponDrop in FindObjectsOfType<WeaponDrop>())
+            foreach (Weapon weapon in FindObjectsOfType<Weapon>())
             {
-                weaponDrops.Add(weaponDrop.WeaponName(), weaponDrop);
+                weapons.Add(weapon.WeaponName(), weapon);
             }
 
             foreach (var weaponData in weaponSO.weaponData)
             {
-                if (weaponDrops.ContainsKey(weaponData.weaponName.ToString()))
+                if (weapons.ContainsKey(weaponData.weaponName.ToString()))
                 {
-                    WeaponDrop weaponDrop = weaponDrops[weaponData.weaponName.ToString()];
-                    weaponDrop.Set(weaponData.weaponObject, weaponData.weaponDamage, weaponData.weaponAttackSpeed);
+                    Weapon weapon = weapons[weaponData.weaponName.ToString()];
+                    weapon.Set(weaponData.weaponDamage, weaponData.weaponAttackSpeed);
                 }
             }
         }
+        #endregion
+
         private void Update()
         {
             Shoot();
             Interact();
         }
+
+        #region Input Methods
         private void Shoot()
         {
             if (input.shoot)
@@ -67,73 +70,48 @@ namespace TechnicalTest.System.WeaponSystem.Controller
                 input.interact = false;
             }
         }
+        #endregion
+
         private void GetWeapon()
         {
-            if (currentWeaponDrop == null)
+            if (currentDroppedWeapon == null)
                 return;
 
-            if (obtainedWeapons.Count > 0)
+            foreach (var weaponValue in weapons)
             {
-                foreach (var weapon in obtainedWeapons)
-                    weapon.gameObject.SetActive(false);
-            }
-
-            // TODO Arreglar el sistema de cambio de arma
-            //ThrowOldWeaponDrop();
-
-            InstantiateWeapon();
-        }
-        private void InstantiateWeapon()
-        {
-            foreach (var weaponValue in weaponDrops)
-            {
-                WeaponDrop weaponDrop = weaponValue.Value;
-
-                if (weaponDrop.WeaponName() == currentWeaponDrop.WeaponName())
+                Weapon weapon = weaponValue.Value;
+                if (weapon.WeaponName() == currentDroppedWeapon.WeaponName())
                 {
-                    obtainedWeapons.Add(currentWeapon = Instantiate(weaponDrop.WeaponObject, weaponContainer.transform));
-                    //currentWeapon.Set(weaponDrop.WeaponDamage, weaponDrop.WeaponAttackSpeed);
-                    currentWeapon.gameObject.SetActive(true);
-                    interactEvents.Invoke();
+                    if (currentWeapon != null)
+                    {
+                        currentWeapon.transform.SetParent(weaponDropContainer.transform);
+                        currentWeapon.GetComponent<Weapon>().Drop(transform);
+                        currentWeapon = null;
+                    }
 
-                    // TODO Arreglar el sistema de cambio de arma
-                    Destroy(currentWeaponDrop.gameObject);
+                    interactEvents.Invoke();
+                    currentWeapon = currentDroppedWeapon.gameObject;
+                    currentWeapon.transform.SetParent(weaponContainer.transform);
+
+                    currentWeapon.GetComponent<Weapon>().PickUp();
 
                     break;
                 }
             }
         }
 
-        // TODO Arreglar el sistema de cambio de arma
-        //private void ThrowOldWeaponDrop()
-        //{
-        //    if (oldWeaponDrop != null)
-        //    {
-        //        WeaponDrop weaponInstance = Instantiate(oldWeaponDrop, weaponContainer.transform.position, transform.rotation);
-        //        weaponInstance.transform.parent = weaponDropContainer.transform;
-
-        //        Rigidbody weaponInstanceRigidbody = weaponInstance.GetComponent<Rigidbody>();
-        //        if (weaponInstanceRigidbody != null)
-        //        {
-        //            weaponInstanceRigidbody.AddForce(transform.forward * 7f);
-        //        }
-        //    }
-
-        //    oldWeaponDrop = currentWeaponDrop;
-        //}
-
         #region Trigger Methods
-        public void GetWeaponDrop(WeaponDrop weaponDrop)
+        public void GetWeaponComponent(Weapon weaponComponent)
         {
-            if (weaponDrop == null) return;
+            if (weaponComponent == null) return;
             else
             {
-                currentWeaponDrop = weaponDrop;
+                currentDroppedWeapon = weaponComponent;
             }
         }
         public void DeleteWeaponDrop()
         {
-            currentWeaponDrop = null;
+            currentDroppedWeapon = null;
         }
         #endregion
     }

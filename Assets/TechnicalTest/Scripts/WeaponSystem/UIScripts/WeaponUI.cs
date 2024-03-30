@@ -1,4 +1,4 @@
-using TechnicalTest.System.WeaponSystem.Controller;
+using TechnicalTest.System.WeaponSystem.WeaponCore;
 using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.UI
@@ -7,7 +7,7 @@ namespace TechnicalTest.System.WeaponSystem.UI
     {
         [SerializeField] private WeaponText weaponText;
 
-        public void ActiveWeaponText(WeaponDrop weaponDrop)
+        public void ActiveWeaponText(Weapon weaponDrop)
         {
             string weaponName = weaponDrop.WeaponName();
             weaponText.Active(weaponName);
