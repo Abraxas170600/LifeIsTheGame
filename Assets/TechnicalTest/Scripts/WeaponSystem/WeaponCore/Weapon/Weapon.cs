@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TechnicalTest.Effects;
 using TechnicalTest.System.WeaponSystem.Data;
 using UnityEngine;
 
@@ -23,14 +24,19 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         [SerializeField] private int bulletSize = 10;
         private readonly List<GameObject> bullets = new List<GameObject>();
 
+        [SerializeField] private VFXController VFXBullet;
+        private readonly List<GameObject> bulletParticles = new List<GameObject>();
+
 
         #region Initialize
         public void InitializeWeapon(uint weaponDamage, float weaponAttackSpeed, Bullet weaponBullet)
         {
             this.weaponAttackSpeed = weaponAttackSpeed;
-            InstantiateWeaponBullets(weaponBullet, weaponDamage, bulletSize);
+
+            BulletsPool(weaponBullet, weaponDamage, bulletSize);
+            bulletParticlesPool(bulletSize);
         }
-        private void InstantiateWeaponBullets(Bullet weaponBullet, uint weaponDamage, int bulletAmount)
+        private void BulletsPool(Bullet weaponBullet, uint weaponDamage, int bulletAmount)
         {
             for (int i = 0; i < bulletAmount; i++)
             {
@@ -41,6 +47,17 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
                 bullet.transform.SetParent(bulletSpawn.transform);
 
                 bullets.Add(bullet);
+            }
+        }
+        private void bulletParticlesPool(int particleAmount)
+        {
+            for (int i = 0; i < particleAmount; i++)
+            {
+                GameObject bulletParticle = Instantiate(VFXBullet.gameObject);
+
+                bulletParticle.SetActive(false);
+
+                bulletParticles.Add(bulletParticle);
             }
         }
         #endregion
@@ -108,7 +125,7 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
                     {
                         bullets[i].SetActive(true);
                         bullets[i].transform.parent = null;
-                        bullets[i].GetComponent<Bullet>().SpawnBullet(bulletSpawn, this.transform);
+                        bullets[i].GetComponent<Bullet>().SpawnBullet(bulletSpawn, this.transform, RequestBulletParticle());
 
                         attackSpeedTimer = 0;
                         canShoot = false;
@@ -121,6 +138,22 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
                 Debug.Log("Attack speed limit");
             }
 
+        }
+        private VFXController RequestBulletParticle()
+        {
+            for (int i = 0; i < bulletParticles.Count; i++)
+            {
+                if (!bulletParticles[i].activeSelf)
+                {
+                    bulletParticles[i].SetActive(true);
+                    bulletParticles[i].transform.parent = null;
+                    return bulletParticles[i].GetComponent<VFXController>();
+                }
+            }
+
+            bulletParticlesPool(1);
+            bulletParticles[bulletParticles.Count - 1].SetActive(true);
+            return bulletParticles[bulletParticles.Count - 1].GetComponent<VFXController>();
         }
         #endregion
     }

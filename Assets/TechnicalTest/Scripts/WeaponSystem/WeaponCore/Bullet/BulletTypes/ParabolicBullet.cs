@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TechnicalTest.Effects;
 using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
@@ -14,9 +13,9 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         {
             base.Initialize(weaponDamage);
         }
-        public override void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform)
+        public override void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform, VFXController bulletParticle)
         {
-            base.SpawnBullet(bulletSpawn, weaponTransform);
+            base.SpawnBullet(bulletSpawn, weaponTransform, bulletParticle);
 
         }
         protected override void BulletAction()

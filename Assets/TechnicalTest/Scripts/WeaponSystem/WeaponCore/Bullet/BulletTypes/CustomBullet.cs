@@ -1,7 +1,5 @@
-using System.Collections;
-using System;
-using System.Collections.Generic;
 using UnityEngine;
+using TechnicalTest.Effects;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
@@ -18,9 +16,9 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         {
             base.Initialize(weaponDamage);
         }
-        public override void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform)
+        public override void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform, VFXController bulletParticle)
         {
-            base.SpawnBullet(bulletSpawn, weaponTransform);
+            base.SpawnBullet(bulletSpawn, weaponTransform, bulletParticle);
 
             TrailColor(Color.white);
 

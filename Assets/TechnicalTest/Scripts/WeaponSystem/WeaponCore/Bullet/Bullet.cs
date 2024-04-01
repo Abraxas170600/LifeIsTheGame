@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using TechnicalTest.Effects;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
@@ -12,7 +13,6 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
     {
         [SerializeField] protected float bulletSpeed;
         [SerializeField] protected float bulletTimeLife;
-        //[SerializeField] protected ParticleSystem VFXBullet;
 
         protected Rigidbody bulletRigidbody;
 
@@ -21,16 +21,22 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         protected Transform weaponTransform;
         protected TrailRenderer trail;
 
+        protected VFXController currentBulletParticle;
+
         public virtual void Initialize(uint weaponDamage)
         {
             bulletRigidbody = GetComponent<Rigidbody>();
             transform.localScale = Vector3.zero;
             bulletDamage = weaponDamage;
         }
-        public virtual void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform)
+        public virtual void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform, VFXController bulletParticle)
         {
             transform.position = bulletSpawn.transform.position;
             transform.rotation = weaponTransform.transform.rotation;
+
+            currentBulletParticle = bulletParticle;
+            currentBulletParticle.transform.position = transform.position;
+            currentBulletParticle.transform.SetParent(transform);
 
             this.weaponTransform = weaponTransform;
             bulletTimeLife = 0f;
@@ -61,6 +67,8 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         }
         protected virtual void DesactiveBullet()
         {
+            currentBulletParticle.transform.parent = null;
+            currentBulletParticle.ActiveParticle();
             transform.DOScale(Vector3.zero, 0.05f).SetEase(Ease.OutQuad).OnComplete(FinishActions);
         }
         private void FinishActions()

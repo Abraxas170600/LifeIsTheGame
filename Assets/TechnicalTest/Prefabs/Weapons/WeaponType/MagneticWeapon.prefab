@@ -132,6 +132,7 @@ MonoBehaviour:
   weaponType: 1
   bulletSpawn: {fileID: 7553003010663558828}
   bulletSize: 10
+  VFXBullet: {fileID: 877783857452264173, guid: f9bff7a3e743f604b8483ce3f0b9e4a3, type: 3}
 --- !u!65 &3127353432153619008
 BoxCollider:
   m_ObjectHideFlags: 0

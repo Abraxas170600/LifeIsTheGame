@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 10
   bulletTimeLife: 5
+  VFXBullet: {fileID: 877783857452264173, guid: f9bff7a3e743f604b8483ce3f0b9e4a3, type: 3}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
