@@ -6,13 +6,34 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
     public class MagneticBullet : Bullet
     {
-        public override void Initialize()
+        [SerializeField] private LayerMask magneticLayer;
+        [SerializeField] private float magneticStrength = 5f;
+        [SerializeField] private float magneticRange = 5f;
+        public override void Initialize(uint weaponDamage)
         {
-            throw new global::System.NotImplementedException();
+            base.Initialize(weaponDamage);
         }
-        public override void BulletAction()
+        public override void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform)
         {
-            throw new global::System.NotImplementedException();
+            base.SpawnBullet(bulletSpawn, weaponTransform);
+        }
+        protected override void BulletAction()
+        {
+            if (enabled)
+            {
+                base.BulletAction();
+
+                Collider[] hitColliders = Physics.OverlapSphere(transform.position, magneticRange, magneticLayer);
+                foreach (Collider hitCollider in hitColliders)
+                {
+                    Rigidbody objectRigidbody = hitCollider.GetComponent<Rigidbody>();
+                    if (!objectRigidbody.isKinematic)
+                    {
+                        Vector3 forceDirection = transform.position - hitCollider.transform.position;
+                        objectRigidbody.AddForce(forceDirection.normalized * magneticStrength);
+                    }
+                }
+            }
         }
     }
 }

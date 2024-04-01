@@ -1,3 +1,4 @@
+using TechnicalTest.System.WeaponSystem.WeaponCore;
 using System;
 
 namespace TechnicalTest.System.WeaponSystem.Data
@@ -8,5 +9,6 @@ namespace TechnicalTest.System.WeaponSystem.Data
         public WeaponType weaponName;
         public uint weaponDamage;
         public float weaponAttackSpeed;
+        public Bullet weaponBullet;
     }
 }

@@ -9,7 +9,7 @@ namespace TechnicalTest.System.WeaponSystem.UI
 
         public void ActiveWeaponText(Weapon weaponDrop)
         {
-            string weaponName = weaponDrop.WeaponName();
+            string weaponName = weaponDrop.GetWeaponName();
             weaponText.Active(weaponName);
         }
         public void DesactiveWeaponText()

@@ -34,7 +34,7 @@ namespace TechnicalTest.System.WeaponSystem.Controller
         {
             foreach (Weapon weapon in FindObjectsOfType<Weapon>())
             {
-                weapons.Add(weapon.WeaponName(), weapon);
+                weapons.Add(weapon.GetWeaponName(), weapon);
             }
 
             foreach (var weaponData in weaponSO.weaponData)
@@ -42,7 +42,7 @@ namespace TechnicalTest.System.WeaponSystem.Controller
                 if (weapons.ContainsKey(weaponData.weaponName.ToString()))
                 {
                     Weapon weapon = weapons[weaponData.weaponName.ToString()];
-                    weapon.Set(weaponData.weaponDamage, weaponData.weaponAttackSpeed);
+                    weapon.InitializeWeapon(weaponData.weaponDamage, weaponData.weaponAttackSpeed, weaponData.weaponBullet);
                 }
             }
         }
@@ -59,6 +59,9 @@ namespace TechnicalTest.System.WeaponSystem.Controller
         {
             if (input.shoot)
             {
+                if (currentWeapon != null)
+                    currentWeapon.GetComponent<Weapon>().RequestBullet();
+
                 input.shoot = false;
             }
         }
@@ -80,7 +83,7 @@ namespace TechnicalTest.System.WeaponSystem.Controller
             foreach (var weaponValue in weapons)
             {
                 Weapon weapon = weaponValue.Value;
-                if (weapon.WeaponName() == currentDroppedWeapon.WeaponName())
+                if (weapon.GetWeaponName() == currentDroppedWeapon.GetWeaponName())
                 {
                     if (currentWeapon != null)
                     {

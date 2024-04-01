@@ -6,13 +6,26 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
     public class ParabolicBullet : Bullet
     {
-        public override void Initialize()
+        private const float gravity = 9.81f;
+        public override void Initialize(uint weaponDamage)
         {
-            throw new global::System.NotImplementedException();
+            base.Initialize(weaponDamage);
         }
-        public override void BulletAction()
+        public override void SpawnBullet(GameObject bulletSpawn, Transform weaponTransform)
         {
-            throw new global::System.NotImplementedException();
+            base.SpawnBullet(bulletSpawn, weaponTransform);
+
+        }
+        protected override void BulletAction()
+        {
+            if (enabled)
+            {
+                base.BulletAction();
+
+                Vector3 gravityAcceleration = new Vector3(0, -gravity, 0);
+                Vector3 newVelocity = bulletRigidbody.velocity + gravityAcceleration * Time.fixedDeltaTime;
+                bulletRigidbody.velocity = newVelocity;
+            }
         }
     }
 }

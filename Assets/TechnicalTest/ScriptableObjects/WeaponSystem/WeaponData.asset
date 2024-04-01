@@ -16,12 +16,12 @@ MonoBehaviour:
   - weaponName: 0
     weaponDamage: 26
     weaponAttackSpeed: 0.84
-    weaponObject: {fileID: 2488737443012010324, guid: 675fec3b49c87c049a7e9a0ad2bb93b4, type: 3}
+    weaponBullet: {fileID: 3816887927902414134, guid: 7551e4a3b57173549aa6cf07baf13270, type: 3}
   - weaponName: 1
     weaponDamage: 35
     weaponAttackSpeed: 0.65
-    weaponObject: {fileID: 8953387125529669092, guid: 8b457bea2a61edd4d95c37a054b2e8a6, type: 3}
+    weaponBullet: {fileID: 8052696177346716641, guid: a9ebe3072924efc4b96e8170b8bd793c, type: 3}
   - weaponName: 2
     weaponDamage: 15
-    weaponAttackSpeed: 1.25
-    weaponObject: {fileID: 7531749254622411612, guid: f5023b60ff150b345843a94cc261f29f, type: 3}
+    weaponAttackSpeed: 0.1
+    weaponBullet: {fileID: 1224377135912514983, guid: b75836b43696d99409521fea8ab6b4c3, type: 3}
