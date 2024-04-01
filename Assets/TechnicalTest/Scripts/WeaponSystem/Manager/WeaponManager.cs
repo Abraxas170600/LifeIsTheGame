@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.Manager
 {
+    /// <summary>
+    /// Manager that initializes the entire weapon system.
+    /// </summary>
     [CreateAssetMenu(fileName = "WeaponManager", menuName = "Technical Test/Game Core/Manager/WeaponManager")]
     public class WeaponManager : ManagerSO
     {
@@ -14,9 +17,18 @@ namespace TechnicalTest.System.WeaponSystem.Manager
         {
             WeaponSO weaponSO = ListenerUtility.GetSystemSO<WeaponSO>("WeaponSO");
             WeaponController weaponController = ListenerUtility.FindComponent<WeaponController>();
-            WeaponUI weaponUI = ListenerUtility.FindComponent<WeaponUI>();
 
-            weaponController.Initialize(weaponSO);
+            if (weaponController == null)
+            {
+                Debug.Log("Weapon Manager Desactived");
+                return;
+            }
+            else
+            {
+                WeaponUI weaponUI = ListenerUtility.FindComponent<WeaponUI>();
+
+                weaponController.Initialize(weaponSO);
+            }
         }
     }
 }

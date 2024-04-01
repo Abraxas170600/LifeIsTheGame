@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.PlayerSystem.Controller
 {
+	/// <summary>
+	/// Class that controls the basic actions of the player.
+	/// </summary>
 	[RequireComponent(typeof(CharacterController))]
 	[RequireComponent(typeof(PlayerInput))]
 	public class PlayerController : MonoBehaviour

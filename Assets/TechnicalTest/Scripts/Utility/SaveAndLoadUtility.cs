@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.Utility.DataManagement
 {
+    /// <summary>
+    /// Utility class that saves and loads necessary information between scenes and game sessions.
+    /// </summary>
     public static class SaveAndLoadUtility
     {
         public static void SaveValue<T>(string key, T value)

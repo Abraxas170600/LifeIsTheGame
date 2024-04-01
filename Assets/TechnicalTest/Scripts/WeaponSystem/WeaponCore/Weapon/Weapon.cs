@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
+    /// <summary>
+    /// Class that configures and controls the actions of each weapon according to the data of each one.
+    /// </summary>
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private WeaponType weaponType;

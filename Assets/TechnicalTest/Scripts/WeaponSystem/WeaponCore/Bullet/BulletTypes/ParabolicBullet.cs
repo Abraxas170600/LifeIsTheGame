@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
+    /// <summary>
+    /// bullet with parabolic movement that increases the range according to the angle of fire. High damage and has medium range.
+    /// </summary>
     public class ParabolicBullet : Bullet
     {
         private const float gravity = 9.81f;

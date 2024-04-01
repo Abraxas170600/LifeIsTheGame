@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 namespace TechnicalTest.System.WeaponSystem.Controller
 {
+    /// <summary>
+    /// Class that detects weapons through triggers and active external script events according to the detection status.
+    /// </summary>
     public class WeaponEventsTrigger : MonoBehaviour
     {
         [SerializeField] private UnityEvent<Weapon> triggerEnterEvent;

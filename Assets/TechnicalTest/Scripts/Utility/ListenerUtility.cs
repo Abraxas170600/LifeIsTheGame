@@ -3,6 +3,9 @@ using TechnicalTest.Core;
 
 namespace TechnicalTest.System.Utility.Listener
 {
+    /// <summary>
+    /// Script used to obtain SO data and components.
+    /// </summary>
     public static class ListenerUtility
     {
         public static T GetSystemSO<T>(string systemName) where T : ScriptableObject
@@ -26,7 +29,7 @@ namespace TechnicalTest.System.Utility.Listener
 
             if (component == null)
             {
-                Debug.LogError($"{typeof(T).Name} component not found!");
+                Debug.LogWarning($"{typeof(T).Name} component not found!");
                 return null;
             }
 

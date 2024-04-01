@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
+    /// <summary>
+    /// bullets aimed at the nearest target. Low damage but high range and speed.
+    /// </summary>
     public class CustomBullet : Bullet
     {
         [SerializeField] private LayerMask targetLayer;
@@ -48,7 +51,7 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
                     Vector3 direction = (target.position - transform.position).normalized;
                     TrailColor(Color.red);
 
-                    bulletSpeed += Time.fixedDeltaTime * 2f;
+                    bulletSpeed += Time.fixedDeltaTime * 3f;
                     bulletRigidbody.velocity = direction * bulletSpeed;
                 }
             }

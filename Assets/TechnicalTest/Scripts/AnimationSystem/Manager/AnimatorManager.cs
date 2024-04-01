@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.AnimationSystem.Manager
 {
+    /// <summary>
+    /// Manager that initializes the entire animation system.
+    /// </summary>
     [CreateAssetMenu(fileName = "AnimationManager", menuName = "Technical Test/Game Core/Manager/AnimationManager")]
     public class AnimatorManager : ManagerSO
     {
@@ -14,12 +17,21 @@ namespace TechnicalTest.System.AnimationSystem.Manager
         {
             AnimationSO animationSO = ListenerUtility.GetSystemSO<AnimationSO>("AnimationSO");
             AnimationController animationController = ListenerUtility.FindComponent<AnimationController>();
-            AnimationUI animationUI = ListenerUtility.FindComponent<AnimationUI>();
 
-            if(animationUI == null)
+            if (animationController == null)
+            {
+                Debug.Log("Animator Manager Desactived");
                 return;
+            }
             else
-                animationUI.Initialize(animationSO, animationController);
+            {
+                AnimationUI animationUI = ListenerUtility.FindComponent<AnimationUI>();
+
+                if(animationUI == null)
+                    return;
+                else
+                    animationUI.Initialize(animationSO, animationController);
+            }
         }
     }
 }

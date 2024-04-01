@@ -5,6 +5,9 @@ using TechnicalTest.System.AnimationSystem.Controller;
 
 namespace TechnicalTest.System.AnimationSystem.UI
 {
+    /// <summary>
+    /// UI class that controls and initialize all user interface actions of the animation system.
+    /// </summary>
     public class AnimationUI : MonoBehaviour
     {
         [SerializeField] private AnimationButton animationButton;

@@ -3,9 +3,16 @@ using UnityEngine;
 
 namespace TechnicalTest.System.AnimationSystem.Controller
 {
+    /// <summary>
+    /// Class that manages the main actions of the animation system.
+    /// </summary>
     public class AnimationController : MonoBehaviour
     {
+        [Header("Animator dependences")]
+
+        [Tooltip("Animator obtained from the character in the scene")]
         private Animator characterAnimator = null;
+        [Tooltip("Name of the running animation")]
         private string currentAnimation = null;
 
         private void Start()

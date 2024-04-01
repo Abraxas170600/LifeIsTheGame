@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
+    /// <summary>
+    /// magnetic weapons that attract dynamic objects in their environment. Have medium damage and short range.
+    /// </summary>
     public class MagneticBullet : Bullet
     {
         [SerializeField] private LayerMask magneticLayer;

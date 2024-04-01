@@ -7,6 +7,9 @@ using UnityEngine.Events;
 
 namespace TechnicalTest.System.WeaponSystem.Controller
 {
+    /// <summary>
+    /// Class that controls the player's actions with the weapons.
+    /// </summary>
     public class WeaponController : MonoBehaviour
     {
         [SerializeField] private GameObject weaponContainer;
@@ -17,9 +20,6 @@ namespace TechnicalTest.System.WeaponSystem.Controller
 
         private Weapon currentDroppedWeapon;
         private GameObject currentWeapon;
-
-        private uint weaponDamage;
-        private float weaponAttackSpeed;
 
         private InputController input;
 

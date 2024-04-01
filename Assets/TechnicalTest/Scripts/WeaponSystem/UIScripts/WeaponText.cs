@@ -3,6 +3,9 @@ using TMPro;
 
 namespace TechnicalTest.System.WeaponSystem.UI
 {
+    /// <summary>
+    /// UI class that controls the actions of the text that is output when the system detects a weapon within the player's reach.
+    /// </summary>
     public class WeaponText : MonoBehaviour
     {
         [SerializeField] private TMP_Text weaponText;

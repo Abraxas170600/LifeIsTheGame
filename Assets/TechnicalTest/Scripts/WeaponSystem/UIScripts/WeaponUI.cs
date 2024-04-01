@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace TechnicalTest.System.WeaponSystem.UI
 {
+    /// <summary>
+    /// UI class that controls and initialize all user interface actions of the weapon system.
+    /// </summary>
     public class WeaponUI : MonoBehaviour
     {
         [SerializeField] private WeaponText weaponText;

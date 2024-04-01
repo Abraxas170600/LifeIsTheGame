@@ -3,6 +3,9 @@ using DG.Tweening;
 
 namespace TechnicalTest.System.WeaponSystem.WeaponCore
 {
+    /// <summary>
+    /// Class inherited by all weapon bullets, controls the main actions of the bullets.
+    /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(SphereCollider))]
     public abstract class Bullet : MonoBehaviour

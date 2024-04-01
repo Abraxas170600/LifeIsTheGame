@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace TechnicalTest.Core
 {
+    /// <summary>
+    /// Core class that stores all the data of the game systems.
+    /// </summary>
     public class GameCore : MonoBehaviour
     {
         [SerializeField] private GameCoreSO gameCoreSO;

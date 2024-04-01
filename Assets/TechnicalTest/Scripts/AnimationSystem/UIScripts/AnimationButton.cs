@@ -6,6 +6,9 @@ using TechnicalTest.System.Utility.Listener;
 
 namespace TechnicalTest.System.AnimationSystem.UI
 {
+    /// <summary>
+    /// UI class representing the option buttons to choose the animation.
+    /// </summary>
     public class AnimationButton : MonoBehaviour
     {
         private static AnimationButton lastSelectedButton;

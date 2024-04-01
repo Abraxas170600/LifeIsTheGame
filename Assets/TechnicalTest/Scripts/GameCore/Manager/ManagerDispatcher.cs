@@ -3,13 +3,19 @@ using UnityEngine;
 
 namespace TechnicalTest.Core.Manager
 {
+    /// <summary>
+    /// Class representing each manager in the game.
+    /// </summary>
     [Serializable]
     public class ManagerType
     {
         public string managerName;
         public ManagerSO managerSO;
-        public bool activeSystem;
     }
+
+    /// <summary>
+    /// Class that initializes all game managers.
+    /// </summary>
     public class ManagerDispatcher : MonoBehaviour
     {
         [SerializeField] private ManagerType[] managerType;
@@ -21,8 +27,7 @@ namespace TechnicalTest.Core.Manager
         {
             for (int i = 0; i < managerType.Length; i++)
             {
-                if (managerType[i].activeSystem)
-                    managerType[i].managerSO.InitializeSystem();
+                managerType[i].managerSO.InitializeSystem();
             }
         }
     }
