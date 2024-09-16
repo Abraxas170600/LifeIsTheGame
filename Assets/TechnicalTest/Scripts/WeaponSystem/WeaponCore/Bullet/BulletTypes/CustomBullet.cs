@@ -36,7 +36,7 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
                 float closestDistance = Mathf.Infinity;
                 foreach (Collider hitCollider in hitColliders)
                 {
-                    float distance = Vector3.Distance(transform.position, hitCollider.transform.position);
+                    float distance = Vector3.Distance(transform.position, hitCollider.bounds.center);
                     if (distance < closestDistance)
                     {
                         closestDistance = distance;
@@ -51,6 +51,9 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
 
                     bulletSpeed += Time.fixedDeltaTime * 3f;
                     bulletRigidbody.velocity = direction * bulletSpeed;
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 30f * Time.deltaTime);
                 }
             }
         }

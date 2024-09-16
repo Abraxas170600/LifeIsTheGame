@@ -410,7 +410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 12
   bulletTimeLife: 5
-  VFXBullet: {fileID: 877783857452264173, guid: f9bff7a3e743f604b8483ce3f0b9e4a3, type: 3}
 --- !u!54 &3816887927902414135
 Rigidbody:
   m_ObjectHideFlags: 0

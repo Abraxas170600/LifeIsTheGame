@@ -22,11 +22,13 @@ namespace TechnicalTest.System.WeaponSystem.Controller
         private GameObject currentWeapon;
 
         private InputController input;
+        private Animator playerAnimator;
 
         #region Initialize
         public void Initialize(WeaponSO weaponSO)
         {
             input = GetComponent<InputController>();
+            playerAnimator = GetComponent<Animator>();
 
             ConfiguratedWeapons(weaponSO);
         }
@@ -42,7 +44,10 @@ namespace TechnicalTest.System.WeaponSystem.Controller
                 if (weapons.ContainsKey(weaponData.weaponName.ToString()))
                 {
                     Weapon weapon = weapons[weaponData.weaponName.ToString()];
-                    weapon.InitializeWeapon(weaponData.weaponDamage, weaponData.weaponAttackSpeed, weaponData.weaponBullet);
+
+                    weapon.InitializeWeapon(weaponData.weaponDamage,
+                                            weaponData.weaponAttackSpeed, 
+                                            weaponData.weaponBullet.GetComponent<Bullet>());
                 }
             }
         }
@@ -60,7 +65,7 @@ namespace TechnicalTest.System.WeaponSystem.Controller
             if (input.shoot)
             {
                 if (currentWeapon != null)
-                    currentWeapon.GetComponent<Weapon>().RequestBullet();
+                    currentWeapon.GetComponent<Weapon>().RequestBullet(playerAnimator);
 
                 input.shoot = false;
             }
@@ -97,6 +102,7 @@ namespace TechnicalTest.System.WeaponSystem.Controller
                     currentWeapon.transform.SetParent(weaponContainer.transform);
 
                     currentWeapon.GetComponent<Weapon>().PickUp();
+                    playerAnimator.Play("GetWeapon");
 
                     break;
                 }

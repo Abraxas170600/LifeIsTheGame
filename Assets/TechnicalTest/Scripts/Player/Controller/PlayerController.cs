@@ -69,6 +69,7 @@ namespace TechnicalTest.System.PlayerSystem.Controller
 		private CharacterController controller;
 		private InputController input;
 		private GameObject mainCamera;
+		private Animator playerAnimator;
 
 		private const float threshold = 0.01f;
 
@@ -92,8 +93,8 @@ namespace TechnicalTest.System.PlayerSystem.Controller
 		{
 			controller = GetComponent<CharacterController>();
 			input = GetComponent<InputController>();
-
 			playerInput = GetComponent<PlayerInput>();
+			playerAnimator = GetComponent<Animator>();
 
 			jumpTimeoutDelta = JumpTimeout;
 			fallTimeoutDelta = FallTimeout;
@@ -163,6 +164,7 @@ namespace TechnicalTest.System.PlayerSystem.Controller
 				inputDirection = transform.right * input.move.x + transform.forward * input.move.y;
 			}
 
+			playerAnimator.SetFloat("Speed", Mathf.Abs(input.move.x) + Mathf.Abs(input.move.y));
 			controller.Move(inputDirection.normalized * (speed * Time.deltaTime) + new Vector3(0.0f, verticalVelocity, 0.0f) * Time.deltaTime);
 		}
 

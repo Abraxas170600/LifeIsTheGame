@@ -1,0 +1,20 @@
+{
+    "name": "TechnicalTest.AnimationSystem",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6f60c0c02b98cba44b4364919fb7a516",
+        "GUID:85094f2c56b812e4984a1743fcfe2396",
+        "GUID:80ff37ccdab9c904d83de04917416e5d",
+        "GUID:c72eda3d17162e146b93370e8213d966",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

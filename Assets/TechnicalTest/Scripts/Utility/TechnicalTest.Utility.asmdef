@@ -1,0 +1,17 @@
+{
+    "name": "TechnicalTest.Utility",
+    "rootNamespace": "",
+    "references": [
+        "GUID:80ff37ccdab9c904d83de04917416e5d",
+        "GUID:85094f2c56b812e4984a1743fcfe2396"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

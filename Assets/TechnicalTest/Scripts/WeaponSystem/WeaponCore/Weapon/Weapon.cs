@@ -21,7 +21,7 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         private bool canShoot;
 
         [SerializeField] private GameObject bulletSpawn;
-        [SerializeField] private int bulletSize = 10;
+        [SerializeField] private int bulletAmount = 10;
         private readonly List<GameObject> bullets = new List<GameObject>();
 
         [SerializeField] private VFXController VFXBullet;
@@ -33,8 +33,8 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
         {
             this.weaponAttackSpeed = weaponAttackSpeed;
 
-            BulletsPool(weaponBullet, weaponDamage, bulletSize);
-            bulletParticlesPool(bulletSize);
+            BulletsPool(weaponBullet, weaponDamage, bulletAmount);
+            bulletParticlesPool(bulletAmount);
         }
         private void BulletsPool(Bullet weaponBullet, uint weaponDamage, int bulletAmount)
         {
@@ -115,7 +115,7 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
             if (attackSpeedTimer >= weaponAttackSpeed)
                 canShoot = true;
         }
-        public void RequestBullet()
+        public void RequestBullet(Animator playerAnimator)
         {
             if (canShoot)
             {
@@ -126,6 +126,8 @@ namespace TechnicalTest.System.WeaponSystem.WeaponCore
                         bullets[i].SetActive(true);
                         bullets[i].transform.parent = null;
                         bullets[i].GetComponent<Bullet>().SpawnBullet(bulletSpawn, this.transform, RequestBulletParticle());
+
+                        playerAnimator.Play("Shoot");
 
                         attackSpeedTimer = 0;
                         canShoot = false;

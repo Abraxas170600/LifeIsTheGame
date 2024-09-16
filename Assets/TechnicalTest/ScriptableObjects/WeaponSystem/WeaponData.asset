@@ -15,13 +15,13 @@ MonoBehaviour:
   weaponData:
   - weaponName: 0
     weaponDamage: 26
-    weaponAttackSpeed: 0.2
-    weaponBullet: {fileID: 3816887927902414134, guid: 7551e4a3b57173549aa6cf07baf13270, type: 3}
+    weaponAttackSpeed: 0.35
+    weaponBullet: {fileID: 3816887927902414132, guid: 7551e4a3b57173549aa6cf07baf13270, type: 3}
   - weaponName: 1
     weaponDamage: 21
     weaponAttackSpeed: 0.6
-    weaponBullet: {fileID: 8052696177346716641, guid: a9ebe3072924efc4b96e8170b8bd793c, type: 3}
+    weaponBullet: {fileID: 8052696177346716642, guid: a9ebe3072924efc4b96e8170b8bd793c, type: 3}
   - weaponName: 2
     weaponDamage: 12
     weaponAttackSpeed: 0.13
-    weaponBullet: {fileID: 1224377135912514983, guid: b75836b43696d99409521fea8ab6b4c3, type: 3}
+    weaponBullet: {fileID: 1224377135912514980, guid: b75836b43696d99409521fea8ab6b4c3, type: 3}

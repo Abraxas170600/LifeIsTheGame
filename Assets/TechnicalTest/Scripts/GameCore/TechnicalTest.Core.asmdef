@@ -1,0 +1,16 @@
+{
+    "name": "TechnicalTest.Core",
+    "rootNamespace": "",
+    "references": [
+        "GUID:80ff37ccdab9c904d83de04917416e5d"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
